@@ -154,6 +154,43 @@ button {
   }
 }
 
+@media (max-width: 1080px) and (min-width: 769px) {
+  .header-content {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    max-width: none;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .section h3 {
+    font-size: 22px;
+  }
+
+  button {
+    font-size: 18px;
+    height: 72px;
+  }
+
+  .container {
+    gap: 20px;
+    padding: 0 16px;
+  }
+
+  .button-row {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .button-row button {
+    flex: 1 1 320px;
+    width: auto;
+    min-width: 200px;
+  }
+}
+
 @media (max-width: 768px) {
   .header-content {
     flex-wrap: wrap;
