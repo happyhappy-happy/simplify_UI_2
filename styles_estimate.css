@@ -79,6 +79,13 @@ textarea {
   align-items: center;
 }
 
+/* Prevent header action buttons from shrinking or wrapping on small screens */
+.header-actions a {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
 .estimate-btn {
   display: inline-flex;
   align-items: center;
@@ -115,6 +122,13 @@ textarea {
 .index-btn:hover {
   background: #4bbcff;
   transform: translateY(-1px);
+}
+
+/* Ensure index-btn and estimate-btn keep consistent sizing behavior */
+.estimate-btn,
+.index-btn {
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .header-actions {
@@ -579,6 +593,17 @@ textarea {
     flex-wrap: wrap;
     align-items: flex-start;
     max-width: none;
+  }
+
+  .header-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .header-actions a {
+    width: auto;
+    flex: 0 1 auto;
   }
 
   .header h1 {
