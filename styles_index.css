@@ -51,13 +51,21 @@ button {
 
 .header {
   background: linear-gradient(135deg, #b3d9ff 0%, #d4e5f7 100%);
-  padding: 20px;
+  padding: 20px 0; /* 上下內距，左右由 .header-content 控制 */
   border-bottom: 3px solid #2168f3;
+  box-sizing: border-box;
+  width: 100vw;                 /* 佔滿視窗寬度 */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;           /* 使區塊置中並延展到邊緣 */
+  margin-right: -50vw;
 }
 
 .header-content {
   max-width: 1600px;
   margin: 0 auto;
+  padding: 0 20px; /* 讓內部在窄螢幕有左右間距，避免文字貼邊 */
   display: flex;
   align-items: center;
   justify-content: space-between;
