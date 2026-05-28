@@ -1,0 +1,67 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>首頁</title>
+  <link rel="stylesheet" href="styles_index.css" />
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header class="header">
+      <div class="header-content">
+        <h1>保險條文簡化 & 理賠金估算</h1>
+        <div class="header-actions">
+          <a class="index-btn" href="index.html">首頁</a>
+          <a class="estimate-btn" href="https://www.fubon.com/life/">富邦人壽</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- 條文簡化 -->
+    <div class="section">
+      <h3>條文簡化</h3>
+
+      <div class="button-row">
+        <button class="btn" onclick="goSimplify1()">富邦人壽 e 家安心網路投保一年定期壽險</button>
+        <button class="btn" onclick="goSimplify2()">富邦人壽 Fun 肆動網路投保傷害保險</button>
+      </div>
+    </div>
+
+    <!-- 理賠估算 -->
+    <div class="section">
+      <h3>理賠估算</h3>
+
+      <div class="button-row">
+        <button class="btn" onclick="goEstimate1()">富邦人壽傳富美滿外幣利率變動型終身壽險</button>
+        <button class="btn" onclick="goEstimate2()">富邦人壽 Fun 肆動網路投保傷害保險</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function goSimplify1() {
+      window.location.href = "simplify.html";
+    }
+
+    function goEstimate1() {
+      window.location.href = "estimate.html";
+    }
+
+    function goSimplify2() {
+      window.location.href = "simplify2.html";
+    }
+
+    function goEstimate2() {
+      window.location.href = "estimate2.html";
+    }
+  </script>
+
+</body>
+</html>
