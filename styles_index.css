@@ -116,7 +116,6 @@ button {
   background: #4bbcff;
   transform: translateY(-1px);
 }
-
 @media (max-width: 1080px) and (min-width: 769px) {
   .header-content {
     flex-wrap: wrap;
@@ -130,6 +129,7 @@ button {
 
   .section h3 {
     font-size: 22px;
+    text-align: center; /* 標題置中 */
   }
 
   button {
@@ -143,50 +143,15 @@ button {
   }
 
   .button-row {
+    display: flex;
     gap: 12px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;       /* 不允許換行 */
+    justify-content: center; /* 按鈕置中排列 */
   }
 
   .button-row button {
-    flex: 1 1 320px;
-    width: auto;
-    min-width: 200px;
-  }
-}
-
-@media (max-width: 1080px) and (min-width: 769px) {
-  .header-content {
-    flex-wrap: wrap;
-    align-items: flex-start;
-    max-width: none;
-  }
-
-  .header h1 {
-    font-size: 24px;
-  }
-
-  .section h3 {
-    font-size: 22px;
-  }
-
-  button {
-    font-size: 18px;
-    height: 72px;
-  }
-
-  .container {
-    gap: 20px;
-    padding: 0 16px;
-  }
-
-  .button-row {
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .button-row button {
-    flex: 1 1 320px;
-    width: auto;
+    flex: 0 0 auto;          /* 固定大小，不自動縮放 */
+    width: 200px;            /* 固定寬度 */
     min-width: 200px;
   }
 }
@@ -196,6 +161,7 @@ button {
     flex-wrap: wrap;
     align-items: flex-start;
     max-width: none;
+    padding: 0 12px;
   }
 
   .header h1 {
@@ -209,12 +175,10 @@ button {
 
   .button-row {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* 手機改成直排 */
     gap: 12px;
   }
 
-
-  /* 同步字級：手機 / 小平板 */
   button {
     width: 100%;
     max-width: none;
@@ -224,16 +188,10 @@ button {
 
   .section h3 {
     font-size: 20px;
-  }
-
-  .header-content {
-    padding: 0 12px;
-  }
-
-  .section h3 {
-    font-size: 20px;
+    text-align: center; /* 標題置中 */
   }
 }
+
 
 @media (max-width: 480px) {
   .header {
