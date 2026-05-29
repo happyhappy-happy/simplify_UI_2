@@ -77,32 +77,32 @@ function detectClaimType(text) {
     };
   }
 
-  if (normalized.includes("除外責任") || normalized.includes("酒駕") || normalized.includes("犯罪") || normalized.includes("戰爭") || normalized.includes("核能")) {
+  if (normalized.includes("除外責任") || normalized.includes("故意行為") || normalized.includes("犯罪") || normalized.includes("酒駕") || normalized.includes("飲酒") || normalized.includes("駕車") || normalized.includes("騎車") || normalized.includes("戰爭") || normalized.includes("核能") || normalized.includes("原子能") || normalized.includes("武裝變亂")) {
     return {
       article: "第十一條",
       title: "除外責任（原因）",
       type: "exclusion",
-      keywords: ["除外責任", "酒駕", "犯罪", "戰爭", "核能"],
+      keywords: ["除外責任", "故意行為", "犯罪", "酒駕", "飲酒", "駕車", "騎車", "戰爭", "核能", "原子能", "武裝變亂"],
       fullText: fallbackRuleText["第十一條"]
     };
   }
 
-  if (normalized.includes("不保事項") || normalized.includes("競賽") || normalized.includes("特技") || normalized.includes("拳擊") || normalized.includes("賽車")) {
+  if (normalized.includes("不保事項") || normalized.includes("競賽") || normalized.includes("特技") || normalized.includes("拳擊") || normalized.includes("賽車") || normalized.includes("角力") || normalized.includes("摔跤") || normalized.includes("柔道") || normalized.includes("空手道") || normalized.includes("跆拳道") || normalized.includes("馬術") || normalized.includes("汽車") || normalized.includes("機車") || normalized.includes("自由車") || normalized.includes("表演")) {
     return {
       article: "第十二條",
       title: "不保事項",
       type: "nonCoverage",
-      keywords: ["不保事項", "競賽", "特技", "拳擊", "賽車"],
+      keywords: ["不保事項", "競賽", "特技", "拳擊", "賽車", "角力", "摔跤", "柔道", "空手道", "跆拳道", "馬術", "汽車", "機車", "自由車", "表演"],
       fullText: fallbackRuleText["第十二條"]
     };
   }
 
-  if (normalized.includes("給付限制") || normalized.includes("失能後身故") || normalized.includes("差額給付")) {
+  if (normalized.includes("給付限制") || normalized.includes("失能後身故") || normalized.includes("差額給付") || normalized.includes("同一事故") || normalized.includes("已受領") || normalized.includes("給付總額") || normalized.includes("限額") || normalized.includes("差額")) {
     return {
       article: "第十條",
       title: "保險範圍：保險金給付的限制",
       type: "claimLimit",
-      keywords: ["給付限制", "失能後身故", "差額給付"],
+      keywords: ["給付限制", "失能後身故", "差額給付", "同一事故", "已受領", "給付總額", "限額", "差額"],
       fullText: fallbackRuleText["第十條"]
     };
   }
