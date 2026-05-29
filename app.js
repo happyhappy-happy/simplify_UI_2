@@ -109,33 +109,106 @@ function resetExplanationPanel() {
   }
 }
 
+let currentSpeechButton = null;
+let currentUtterance = null;
+
 // 设置音频播放器
 function setupAudioPlayer() {
   const allPlayBtns = document.querySelectorAll(".play-btn");
   allPlayBtns.forEach((playBtn) => {
+    // 移除 HTML inline onclick，以便統一交給 JS 控制
+    playBtn.removeAttribute("onclick");
+
     playBtn.addEventListener("click", () => {
-      const isPlaying = playBtn.hasAttribute("data-playing");
-
-      if (!isPlaying) {
-        playBtn.setAttribute("data-playing", "true");
-        playBtn.textContent = "⏸ 暫停語音";
-        playBtn.style.background = "#6c757d";
-
-        // 模擬播放時長
-        setTimeout(() => {
-          if (playBtn.hasAttribute("data-playing")) {
-            playBtn.removeAttribute("data-playing");
-            playBtn.textContent = "▶ 播放語音說明";
-            playBtn.style.background = "var(--primary-yellow)";
-          }
-        }, 3000);
-      } else {
-        playBtn.removeAttribute("data-playing");
-        playBtn.textContent = "▶ 播放語音說明";
-        playBtn.style.background = "var(--primary-yellow)";
-      }
+      toggleSpeech(playBtn);
     });
   });
+}
+
+function toggleSpeech(button) {
+  const tabContent = button.closest(".tab-content");
+  if (!tabContent) return;
+
+  const text = getTextFromTabContent(tabContent);
+  if (!text) return;
+
+  const isCurrentButton = button === currentSpeechButton;
+  const synth = window.speechSynthesis;
+
+  if (isCurrentButton && synth.speaking && !synth.paused) {
+    synth.pause();
+    updateButtonState(button, "paused");
+    return;
+  }
+
+  if (isCurrentButton && synth.paused) {
+    synth.resume();
+    updateButtonState(button, "playing");
+    return;
+  }
+
+  if (synth.speaking || synth.paused) {
+    synth.cancel();
+    resetAllPlayButtons();
+  }
+
+  currentSpeechButton = button;
+  speakText(text, button);
+}
+
+function getTextFromTabContent(tabContent) {
+  const lines = Array.from(tabContent.querySelectorAll("p, li"))
+    .map((el) => el.textContent.trim())
+    .filter(Boolean);
+  return lines.join(" ");
+}
+
+function speakText(text, button) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "zh-TW";
+  utterance.rate = 1;
+  utterance.pitch = 1;
+
+  utterance.onend = () => {
+    if (button) {
+      updateButtonState(button, "stopped");
+    }
+    currentSpeechButton = null;
+    currentUtterance = null;
+  };
+
+  utterance.onerror = () => {
+    if (button) {
+      updateButtonState(button, "stopped");
+    }
+    currentSpeechButton = null;
+    currentUtterance = null;
+  };
+
+  currentUtterance = utterance;
+  const synth = window.speechSynthesis;
+  synth.speak(utterance);
+  updateButtonState(button, "playing");
+}
+
+function updateButtonState(button, state) {
+  if (!button) return;
+  if (state === "playing") {
+    button.textContent = "⏸ 暫停語音";
+    button.style.background = "#6c757d";
+  } else {
+    button.textContent = "▶ 播放語音說明";
+    button.style.background = "var(--primary-yellow)";
+  }
+}
+
+function resetAllPlayButtons() {
+  document.querySelectorAll(".play-btn").forEach((btn) => {
+    btn.textContent = "▶ 播放語音說明";
+    btn.style.background = "var(--primary-yellow)";
+  });
+  currentSpeechButton = null;
+  currentUtterance = null;
 }
 
 // 鍵盤快捷鍵
